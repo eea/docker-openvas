@@ -1,0 +1,32 @@
+#!/bin/bash
+
+PASSWORD=${PASSWORD:-"admin"}
+
+GSAD_LISTEN="--listen=127.0.0.1"
+GSAD_HTTP_ONLY="--http-only"
+GSAD_PORT="--port=9392"
+GSAD_MLISTEN="--mlisten=127.0.0.1"
+GSAD_MPORT="--mport=9390"
+
+OPENVASMD_LISTEN="--listen=127.0.0.1"
+OPENVASMD_PORT="--port=9390"
+
+# DOIT: Behövs export?
+export OPENVAS_KEY_LOCATION="/etc/pki/openvas/private/CA"
+export OPENVAS_CERT_LOCATION="/etc/pki/openvas/CA"
+
+if ! openvasmd --get-users | grep -q ^admin$; then
+	/usr/sbin/openvasmd --create-user=admin
+	/usr/sbin/openvasmd --user=admin --new-password="$PASSWORD"
+fi
+
+if ! >&/dev/null openvas-manage-certs -V; then
+	openvas-manage-certs -a
+fi
+
+/usr/bin/redis-server /etc/redis.conf
+/usr/sbin/openvasmd $OPENVASMD_LISTEN $OPENVASMD_PORT
+/usr/sbin/openvassd
+/usr/sbin/gsad $GSAD_LISTEN $GSAD_HTTP_ONLY $GSAD_PORT $GSAD_MLISTEN $GSAD_MPORT
+
+tail -F --silent /var/log/openvas/*
