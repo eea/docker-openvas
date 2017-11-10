@@ -15,6 +15,14 @@ OPENVASMD_PORT="--port=9390"
 export OPENVAS_KEY_LOCATION="/etc/pki/openvas/private/CA"
 export OPENVAS_CERT_LOCATION="/etc/pki/openvas/CA"
 
+function sigterm() {
+        echo "startd: Shutting down"
+	redis-cli -s /tmp/redis.sock shutdown
+        kill -TERM $tail_pid
+}
+
+trap sigterm SIGTERM
+
 if ! openvasmd --get-users | grep -q ^admin$; then
 	/usr/sbin/openvasmd --create-user=admin
 	/usr/sbin/openvasmd --user=admin --new-password="$PASSWORD"
@@ -29,4 +37,8 @@ fi
 /usr/sbin/openvassd
 /usr/sbin/gsad $GSAD_LISTEN $GSAD_HTTP_ONLY $GSAD_PORT $GSAD_MLISTEN $GSAD_MPORT
 
-tail -F --silent /var/log/openvas/*
+tail -F --silent /var/log/openvas/* &
+tail_pid=$!
+wait $tail_pid
+
+echo "startd: Done"
