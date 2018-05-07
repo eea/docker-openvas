@@ -1,5 +1,19 @@
 #!/bin/bash
 
+if [ ! -f "/var/lib/pgsql/data/PG_VERSION" ]; then
+	runuser - postgres -c initdb
+	runuser - postgres -c 'pg_ctl start'
+	runuser - postgres -c 'createuser --createdb --createrole --superuser root'
+	runuser - postgres -c 'createuser --createdb --createrole --superuser dba'
+	createdb gvmd
+	createdb tasks
+	psql --command 'create extension "uuid-ossp";' gvmd
+	psql --command 'create extension "uuid-ossp";' tasks
+	runuser - postgres -c 'pg_ctl stop'
+fi
+
+runuser - postgres -c 'pg_ctl start'
+
 PASSWORD=${PASSWORD:-"admin"}
 
 GSAD_LISTEN="--listen=127.0.0.1"
@@ -18,6 +32,7 @@ export OPENVAS_CERT_LOCATION="/etc/pki/openvas/CA"
 function sigterm() {
         echo "startd: Shutting down"
 	redis-cli -s /tmp/redis.sock shutdown
+	runuser - postgres -c 'pg_ctl stop'
         kill -TERM $tail_pid
 }
 
