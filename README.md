@@ -8,11 +8,11 @@ Docker image for OpenVAS - slightly modified from [mattias-ohlsson/openvas](http
 - Username: admin
 - Password: admin
 
-> http://127.0.0.1:9392/
+> http://127.0.0.1:443/
 
 ### Create a new OpenVAS container
 
-    docker create --network=host --name=openvas mattiasohlsson/openvas
+    docker create --network=host --name=openvas eeacms/openvas-pg
 
 ### Start your container
 
