@@ -1,6 +1,6 @@
 # [eeacms/openvas-pg](https://hub.docker.com/r/eeacms/openvas-pg/)
 
-Docker image for OpenVAS - slightly modified from [mattias-ohlsson/openvas](https://hub.docker.com/r/mattiasohlsson/openvas/)
+Docker image for OpenVAS - slightly modified from [mattias-ohlsson/openvas](https://hub.docker.com/r/mattiasohlsson/openvas/): set to run openvas with HTTPS and enforced cipher order
 
 
 ## Run
