@@ -1,4 +1,3 @@
-Slightly modified from:
 # [eeacms/openvas-pg](https://hub.docker.com/r/eeacms/openvas-pg/)
 
 Docker image for OpenVAS - slightly modified from [mattias-ohlsson/docker-openvas](https://github.com/mattias-ohlsson/docker-openvas)
