@@ -16,7 +16,7 @@ runuser - postgres -c 'pg_ctl start'
 
 PASSWORD=${PASSWORD:-"admin"}
 
-GSAD_LISTEN="--listen=127.0.0.1"
+#GSAD_LISTEN="--listen=127.0.0.1"
 #GSAD_HTTP_ONLY="--http-only"
 #GSAD_PORT="--port=9392"
 GSAD_MLISTEN="--mlisten=127.0.0.1"
