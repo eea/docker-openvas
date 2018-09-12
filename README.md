@@ -8,7 +8,7 @@ Docker image for OpenVAS - slightly modified from [mattias-ohlsson/openvas](http
 - Username: admin
 - Password: admin
 
-> http://127.0.0.1:443/
+> https://host:443/
 
 ### Create a new OpenVAS container
 
