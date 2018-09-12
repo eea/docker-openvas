@@ -1,7 +1,7 @@
 # Dockerfile for OpenVAS (http://www.openvas.org/)
 FROM fedora
 
-LABEL maintainer="mattias.ohlsson@inprose.com"
+LABEL maintainer="andrei.cenja@eea.europa.eu"
 
 RUN dnf -y update
 RUN dnf -y install openvas-* redis bzip2 which findutils sqlite procps-ng nmap mingw32-nsis texlive-latex-bin-bin openssh gnutls-utils net-tools alien nikto ike-scan net-snmp-utils openldap-clients samba-client ncrack
