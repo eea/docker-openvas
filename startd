@@ -28,7 +28,7 @@ TLS_PRIORITIES="--gnutls-priorities=SECURE128:-AES-128-CBC:-CAMELLIA-128-CBC:-VE
 OPENVASMD_LISTEN="--listen=127.0.0.1"
 OPENVASMD_PORT="--port=9390"
 
-SMTP_SERVER=""
+#SMTP_SERVER=""
 
 # if we get the SMTP_SERVER from env, replace it in the ssmtp config
 if [ ! -z "$SMTP_SERVER" ] && [ -z "$(cat /etc/ssmtp/ssmtp.conf | grep $SMTP_SERVER)" ]; then
