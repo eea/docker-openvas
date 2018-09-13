@@ -33,6 +33,8 @@ GSAD_CERT="--ssl-certificate=/etc/pki/openvas/CA/servercert.pem"
 
 TLS_PRIORITIES="--gnutls-priorities=SECURE128:-AES-128-CBC:-CAMELLIA-128-CBC:-VERS-SSL3.0:-VERS-TLS1.0"
 
+You can also add a $SMTP_SERVER in your environment and it will be replaced in the ssmtp configuration
+
 ### Create a new OpenVAS container
 
     docker create --network=host --name=openvas eeacms/openvas-pg
