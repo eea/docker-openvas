@@ -15,13 +15,13 @@ Docker image for OpenVAS - slightly modified from [mattias-ohlsson/openvas](http
 
 > https://hostname/
 
-List of variables used as parameters by gsad in the startd script and their values:
+List of variables that gsad can use as parameters in the startd script and their values:
 
-undefined: GSAD_LISTEN="--listen=127.0.0.1"
+unused: GSAD_LISTEN="--listen=127.0.0.1"
 
-undefined: GSAD_HTTP_ONLY="-http-only"
+unused: GSAD_HTTP_ONLY="-http-only"
 
-undefined: GSAD_PORT="--port=9392"
+unused: GSAD_PORT="--port=9392"
 
 GSAD_MLISTEN="--mlisten=127.0.0.1"
 
