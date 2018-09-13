@@ -28,6 +28,13 @@ TLS_PRIORITIES="--gnutls-priorities=SECURE128:-AES-128-CBC:-CAMELLIA-128-CBC:-VE
 OPENVASMD_LISTEN="--listen=127.0.0.1"
 OPENVASMD_PORT="--port=9390"
 
+SMTP_SERVER=""
+
+# if we get the SMTP_SERVER from env, replace it in the ssmtp config
+if [ ! -z "$SMTP_SERVER" ] && [ -z "$(cat /etc/ssmtp/ssmtp.conf | grep $SMTP_SERVER)" ]; then
+	sed -i "s/^mailhub.*/mailhub=$SMTP_SERVER/g" /etc/ssmtp/ssmtp.conf
+fi
+
 # DOIT: Behövs export?
 export OPENVAS_KEY_LOCATION="/etc/pki/openvas/private/CA"
 export OPENVAS_CERT_LOCATION="/etc/pki/openvas/CA"
