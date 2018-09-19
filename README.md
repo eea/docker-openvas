@@ -7,6 +7,9 @@ Docker image for OpenVAS - slightly modified from [mattias-ohlsson/openvas](http
 - added ssmtp RPM to send email alerts
 - added tini init
 
+## Note: Due to a bug in the openvas-manager version shipped with Fedora, the schedules currently do not work. 
+In spite of the openvas-manager RPM package versions which are different across Fedora versions, the actual source used behing the RPM build is the same in Fedora 27,27 and at this time (September 2018) the developement version for Fedora 29.
+The issue is not limited to Fedora (see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=868123) but other distros might feature updated packages.
 
 ## Run
 
